@@ -1,8 +1,7 @@
 
-//Get Shrekt
 <html>
 	<head>
-		<title>Shrekbook™</title>
+		<title>Shrekbook</title>
 	</head>
 	
 	<body>
@@ -13,9 +12,9 @@
 			<div class="spacing"><label>Password: </label><input type="password" name="password"></div>
 			
 			<form enctype="multipart/form-data" action="" method="POST">				
-				<div class="spacing"><input type="file" name="fajl"></div>
+				
 			</form>
-				<div class="spacing"><input type="submit" name="Register" value="Register"></div>
+				<div class="spacing"><input type="submit" name="Register" value="Shrek Up"></div>
 		</div>
 	</form>
 
