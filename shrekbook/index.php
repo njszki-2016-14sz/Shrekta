@@ -1,19 +1,28 @@
 <?php 
 	require("database.php");
 	require("function.php");
-	$author = SESSION['author'];
 	
 	?>
 <html>
 	<head>
 		<title>Shrekbook</title>
+		<link href="shrek.css" type="text/css" rel="stylesheet" />
+		<link rel="shortcut icon" href="http://www.iconarchive.com/download/i61338/majdi-khawaja/shrek/Shrek.ico" type="favicon/ico" />
+		<ul>
+			<li><a class="active" href="#home">MainShrek</a></li>
+			<li><a href="#news"></a></li>
+			<li><a href="#contact">ShrekContact</a></li>
+			<li><a href="#about">AboutShrek</a></li>
+		</ul>
 	</head>
 	
 	<body>
+	
+	
 		<form action="" method="POST">
-		<div class="login">
+		<div class="center">
 			
-			<div class="spacing"><label>User name/Email: </label><input type="text" name="username"></div>
+			<div class="spacing"><label>User name or Email: </label><input type="text" name="username"></div>
 			<div class="spacing"><label>Password: </label><input type="password" name="password"></div>
 			
 			<form enctype="multipart/form-data" action="" method="POST">				

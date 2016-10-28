@@ -34,4 +34,7 @@ function UpPost($author, $text){
 		
 	}
 	
+	function joemail($email) {
+		return preg_match('/^[\w.-]+@([\w.-]+\.)+[a-z]{2,6}$/is', $email);
+	}
 	?>
