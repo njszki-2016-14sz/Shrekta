@@ -3,7 +3,7 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: 100% 100%;
-	color: white;
+	color: black;
 	
 }
 
@@ -14,13 +14,44 @@ body {
     display: flex;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
-    -webkit-align-content: center;
-    align-content: center;
+    -webkit-align-content: left;
+    align-content: left;
 	text-align: center;
 	margin: 0 auto;
 	  width: 200px;
-	  background: black;
+	  background: #006600;
 	  padding: 20px;
 	  color: white;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid  #b3ffb3;
+    background-color: #f3f3f3;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+	color: #00cc00;
+}
+
+li a:hover:not(.active) {
+    background-color: #4CAF50;
+	color:white;
+}
+
+li a.active {
+    color: white;
+    background-color: #4CAF50;
+}
