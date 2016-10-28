@@ -1,7 +1,8 @@
-//Get Shrekt
+
 <html>
 	<head>
-		<title>Shrekbook™</title>
+		<title>Shrekbook</title>
+		<link href="shrek.css" type="text/css" rel="stylesheet" />
 	</head>
 	
 	<body>
