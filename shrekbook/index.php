@@ -14,7 +14,9 @@
 			<li><a href="#news"></a></li>
 			<li><a href="#contact">ShrekContact</a></li>
 			<li><a href="#about">AboutShrek</a></li>
-			<li class="UN"> <?php echo $_SESSION['Username']; ?> </li>
+			<? if($_SESSION['Logged']) { ?>
+			<li class="UN"> <?php echo $_SESSION['Username']; ?> <a href="<?php header("index.php?action=profile"); ?>"></a></li>
+			<li class="UN"> <?php LogOut(); ?> <a href="<?php header("index.php"); ?>"></a></li>
 		</ul>
 	</head>
 	
@@ -35,9 +37,10 @@
 	</form>
 	
 	<?php 
-	} else {
 		Login($_POST['username'], $_POST['password']);  
 		echo "Üdv újra  " . $_SESSION['Username'];
+	} else {
+		header("index.php?action=forum");
 		} ?>
 	
 	
