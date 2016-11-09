@@ -2,6 +2,7 @@
 	require("database.php");
 	require("function.php");
 	
+	
 	?>
 <html>
 	<head>
@@ -19,10 +20,10 @@
 	<body>
 	
 	
-		<form action="" method="POST">
+		<form  action="" method="POST">
 		<div class="center">
 			
-			<div class="spacing"><label>User name or Email: </label><input type="text" name="username"></div>
+			<div class="spacing"><label>Username: </label><input type="text" name="username"></div>
 			<div class="spacing"><label>Password: </label><input type="password" name="password"></div>
 			
 			<form enctype="multipart/form-data" action="" method="POST">				
@@ -31,13 +32,19 @@
 				<div class="spacing"><input type="submit" name="Login" value="Shrek Up"></div>
 		</div>
 	</form>
-	<div class="UpPost" >
+	
+	<?php 
+	Login($_POST['username'], $_POST['password']);
+	
+	
+	?>
+	<!--<div class="UpPost" >
 		Új Üzenet Hozzáadása
 		<form action="" method="POST">
 			<div class="NewPost">
 				<input type="text" value="Írd be az üzenetet">
 				<input type="submit" value="Shrek Up!">
-		<?php UpPost($author, $_POST["text"]); ?>
+		<?php /*UpPost($author, $_POST["text"]);*/ ?>
 	
 	</div>
 	
@@ -47,7 +54,7 @@
 		<?php ListPost(); ?>
 	
 	</div>
-
+-->
 	</body>
 	
 
