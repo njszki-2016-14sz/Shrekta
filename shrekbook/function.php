@@ -5,15 +5,18 @@ session_start();
 
 function Login ($Username, $Password) {
 	
-		$query = "(SELECT * FROM user WHERE Username = '$Username', Password = '$Password');";
-		$link = mysql_query($query);
+		$query = "(SELECT * FROM user WHERE Username = '$Username' AND Password = '$Password');";
+		$link = mysql_fetch_assoc(mysql_query($query));
 		if(!$link) {
 			print("Hibás felhasználónév vagy jelszó!");
 			
 		} else { 
-			$_SESSION['Username'] = $row['Username'];
+		
+
+			$_SESSION['Username'] = $link['Username'];
 			$_SESSION['Logged'] = true;		
-			header("Location: index.php?is_logged_in=1?");
+			//header("Location: index.php");
+			
 		}
 	
 	
@@ -40,8 +43,8 @@ function Register($Username, $Password, $Email, $Phone, $Name) {
 function UpPost($author, $text){
 	
 		if(!empty($text)) {
-		$query = mysql_query("INSERT INTO `post` (`ID`, `Author`, `Text`, `Likes`) VALUES (NULL, '$author', '$text', '0');");
-		header("Location: index.php \n");
+			$query = mysql_query("INSERT INTO `post` (`ID`, `Author`, `Text`, `Likes`) VALUES (NULL, '$author', '$text', '0');");
+			header("Location: index.php \n");
 		} 
 	
 		

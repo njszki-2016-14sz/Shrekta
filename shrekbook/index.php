@@ -14,12 +14,13 @@
 			<li><a href="#news"></a></li>
 			<li><a href="#contact">ShrekContact</a></li>
 			<li><a href="#about">AboutShrek</a></li>
+			<li class="UN"> <?php echo $_SESSION['Username']; ?> </li>
 		</ul>
 	</head>
 	
 	<body>
 	
-	
+	<?php if(!$_SESSION['Logged']) { ?>
 		<form  action="" method="POST">
 		<div class="center">
 			
@@ -34,10 +35,13 @@
 	</form>
 	
 	<?php 
-	Login($_POST['username'], $_POST['password']);
+	} else {
+		Login($_POST['username'], $_POST['password']);  
+		echo "Üdv újra  " . $_SESSION['Username'];
+		} ?>
 	
 	
-	?>
+	
 	<!--<div class="UpPost" >
 		Új Üzenet Hozzáadása
 		<form action="" method="POST">
