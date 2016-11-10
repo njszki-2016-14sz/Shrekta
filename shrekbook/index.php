@@ -1,7 +1,7 @@
 <?php 
 	require("database.php");
 	require("function.php");
-	
+	$forum = new Forum;
 	
 	?>
 <html>
@@ -16,45 +16,72 @@
 			<li><a href="#about">AboutShrek</a></li>
 		<!--	<? if($_SESSION['Logged']) { ?>
 			<li class="UN"> <a href="<?php /*header("Location: http://localhost/shrekbook/index.php");*/ ?>"><?php echo $_SESSION['Username']; ?> </a></li>
-			<li class="UN"> <a href="<?php /*header("Location: http://localhost/shrekbook/index.php");*/ ?>"><?php LogOut(); ?>Logout </a></li>
+			--><li class="UN"> <a href="<?php header("index.php"); ?>"><?php $forum->LogOut(); ?>Logout </a></li> <!--
 			<? } else { ?><li class="UN"> <a href="<?php /*header("Location: http://localhost/shrekbook/index.php");*/ ?>">Login </a></li> <? } ?> -->
 		</ul>
 	</head>
 	
 	<body>
 	
-	<?php if(!$_SESSION['Logged']) { ?>
-		<form  action="" method="POST">
-		<div class="center">
-			
-			<div class="spacing"><label>Username: </label><input type="text" name="username"></div>
-			<div class="spacing"><label>Password: </label><input type="password" name="password"></div>
-			<div class="spacing"><input id="butt" type="submit" name="Login" value="Shrek Up"></div>
-		</div>
-	</form>
-	
-	<?php 
-		
-	} else {
-		Login($_POST['username'], $_POST['password']);  
-		echo "Üdv újra  " . $_SESSION['Username'];
-		header("index.php");
-		} ?>
 	
 	
+	
+	
+	<?php
+		if(!$_SESSION['Logged']) {
+	
+			if(isset($_POST['RegUp'])) {
+				
+				?>
+				<form  action="" method="POST">
+				<div class="center">
+					
+					<div class="spacing"><label>Username: </label><input type="text" name="username"></div>
+					<div class="spacing"><label>Email: </label><input type="text" name="email"></div>
+					<div class="spacing"><label>Phone: </label><input type="text" name="phone"></div>
+					<div class="spacing"><label>Name: </label><input type="text" name="name"></div>
+					<div class="spacing"><label>Password: </label><input type="password" name="password"></div>
+					<div class="spacing"><label>Password: </label><input type="password" name="password2"></div>
+					<div class="spacing"><input type="submit" name="Register" value="Shrek Up"></div>
+					
+					
+				</div>
+				</form>	
+				
+				<?php
+				$forum->Register($_POST['username'],$_POST['password'],$_POST['password2'],$_POST['email'],$_POST['phone'],$_POST['name']);
+			} else {
+				?>
+				<form  action="" method="POST">
+					<div class="center">
+				
+						<div class="spacing"><label>Username: </label><input type="text" name="username"></div>
+						<div class="spacing"><label>Password: </label><input type="password" name="password"></div>
+						<div class="spacing"><input type="submit" name="Login" value="Shrek Up"></div>
+				
+				
+					</div>
+				</form>
+			<?php
+				$forum->Login($_POST['username'], $_POST['password']);  
+				echo "Üdv újra  " . $_SESSION['Username'];
+				header("index.php");
+			}
+
+		}?>
 	
 		<form action="" method="POST">
 		<div class="ujpost">
-			<div class="spacing2"><input type="text" value="Írd be az üzeneted" size="37" name="text"></div>
-			<div class="spacing3"><input type="submit" name="ShrekUp" value="Shrek Up"></div>
+			<div class="spacing" value="Írd be az üzeneted"><input type="text" name="text"></div>
+			<div class="spacing"><input type="submit" name="ShrekUp" value="Shrek Up"></div>
+			<?php if(isset($_POST['ShrekUp']))$forum->UpPost($_SESSION['Username'], $_POST['text']);?>
 		</form>
 
 
 		<div class="postok">
 		<?php 
 
-			ListPost();
-			Like($_SESSION['MyID']);
+			$forum->ListPost();			
 		?>
 		</div>
 	
