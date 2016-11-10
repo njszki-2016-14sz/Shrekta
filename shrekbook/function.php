@@ -15,7 +15,7 @@ require("database.php");
 
 				$_SESSION['Username'] = $link['Username'];
 				$_SESSION['Logged'] = true;		
-				header("Location: index.php?action=forum");
+				//header("Location: index.php?action=forum");
 				
 			}
 		
@@ -26,7 +26,7 @@ require("database.php");
 		
 		$_SESSION['Logged'] = false;
 		$_SESSION['Username'] = "";
-		header("Location: index.php");
+		//header("Location: index.php");
 		
 	}
 
@@ -50,7 +50,7 @@ require("database.php");
 			
 				if(!empty($text)) {
 					$query = mysql_query("INSERT INTO `post` (`ID`, `Author`, `Text`, `Likes`) VALUES (NULL, '$author', '$text', '0');");
-					header("Location: index.php \n");
+				//	header("Location: index.php");
 				} 
 			
 				

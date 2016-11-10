@@ -14,10 +14,10 @@
 			<li><a href="#news"></a></li>
 			<li><a href="#contact">ShrekContact</a></li>
 			<li><a href="#about">AboutShrek</a></li>
-			<? if($_SESSION['Logged']) { ?>
-			<li class="UN"> <a href="<?php header("Location: index.php?action=profile"); ?>"><?php echo $_SESSION['Username']; ?> </a></li>
-			<li class="UN"> <a href="<?php header("Location: index.php"); ?>"><?php LogOut(); ?>Logout </a></li>
-			<? } else { ?><li class="UN"> <a href="<?php header("Location: index.php?action=login"); ?>">Login </a></li> <? } ?>
+		<!--	<? if($_SESSION['Logged']) { ?>
+			<li class="UN"> <a href="<?php /*header("Location: http://localhost/shrekbook/index.php");*/ ?>"><?php echo $_SESSION['Username']; ?> </a></li>
+			<li class="UN"> <a href="<?php /*header("Location: http://localhost/shrekbook/index.php");*/ ?>"><?php LogOut(); ?>Logout </a></li>
+			<? } else { ?><li class="UN"> <a href="<?php /*header("Location: http://localhost/shrekbook/index.php");*/ ?>">Login </a></li> <? } ?> -->
 		</ul>
 	</head>
 	
@@ -45,7 +45,7 @@
 		<?php ListPost(); ?>
 	
 	</div>
--->
+
 	</body>
 	
 
