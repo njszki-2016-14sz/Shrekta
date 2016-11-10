@@ -29,7 +29,7 @@
 			
 			<div class="spacing"><label>Username: </label><input type="text" name="username"></div>
 			<div class="spacing"><label>Password: </label><input type="password" name="password"></div>
-			<div class="spacing"><input type="submit" name="Login" value="Shrek Up"></div>
+			<div class="spacing"><input id="butt" type="submit" name="Login" value="Shrek Up"></div>
 		</div>
 	</form>
 	
@@ -45,8 +45,8 @@
 	
 		<form action="" method="POST">
 		<div class="ujpost">
-			<div class="spacing" value="Írd be az üzeneted"><input type="text" name="text"></div>
-			<div class="spacing"><input type="submit" name="ShrekUp" value="Shrek Up"></div>
+			<div class="spacing2"><input type="text" value="Írd be az üzeneted" size="37" name="text"></div>
+			<div class="spacing3"><input type="submit" name="ShrekUp" value="Shrek Up"></div>
 		</form>
 
 
