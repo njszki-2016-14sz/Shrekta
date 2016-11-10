@@ -55,10 +55,3 @@ li a.active {
     color: white;
     background-color: #4CAF50;
 }
-.post{
-	margin: 30px;
-    background-color: #ffffff;
-    border-left: 5px solid green;
-    opacity: 0.8;
-    
-}

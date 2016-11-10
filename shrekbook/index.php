@@ -38,11 +38,25 @@
 	} else {
 		Login($_POST['username'], $_POST['password']);  
 		echo "Üdv újra  " . $_SESSION['Username'];
-		//header("index.php?action=forum");
+		header("index.php");
 		} ?>
 	
 	
-		<?php ListPost(); ?>
+	
+		<form action="" method="POST">
+		<div class="ujpost">
+			<div class="spacing" value="Írd be az üzeneted"><input type="text" name="text"></div>
+			<div class="spacing"><input type="submit" name="ShrekUp" value="Shrek Up"></div>
+		</form>
+
+
+		<div class="postok">
+		<?php 
+
+			ListPost();
+			Like($_SESSION['MyID']);
+		?>
+		</div>
 	
 	</div>
 
