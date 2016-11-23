@@ -1,9 +1,8 @@
 <?php
- ob_start();
+
  session_start();
  require_once 'dbconnect.php';
  
- // it will never let you open index(login) page if session is set
  if ( isset($_SESSION['user'])!="" ) {
   header("Location: home.php");
   exit;
@@ -13,7 +12,7 @@
  
  if( isset($_POST['btn-login']) ) { 
   
-  // prevent sql injections/ clear user invalid inputs
+  
   $email = trim($_POST['email']);
   $email = strip_tags($email);
   $email = htmlspecialchars($email);
@@ -21,7 +20,6 @@
   $pass = trim($_POST['pass']);
   $pass = strip_tags($pass);
   $pass = htmlspecialchars($pass);
-  // prevent sql injections / clear user invalid inputs
   
   if(empty($email)){
    $error = true;
@@ -30,26 +28,23 @@
    $error = true;
    $emailError = "Please enter valid email address.";
   }
-  
   if(empty($pass)){
    $error = true;
    $passError = "Please enter your password.";
   }
-  
-  // if there's no error, continue to login
+ 
   if (!$error) {
    
-   $password = hash('sha256', $pass); // password hashing using SHA256
+   //$password = hash('sha256', $pass); 
   
    $res=mysql_query("SELECT userId, userName, userPass FROM users WHERE userEmail='$email'");
    $row=mysql_fetch_array($res);
-   $count = mysql_num_rows($res); // if uname/pass correct it returns must be 1 row
-   
-   if( $count == 1 && $row['userPass']==$password ) {
+   $count = mysql_num_rows($res); 
+   if($row['userPass']==$password ) {  // $count == 1 && 
     $_SESSION['user'] = $row['userId'];
     header("Location: home.php");
    } else {
-    $errMSG = "Incorrect Credentials, Try again...";
+    $errMSG = " Try again...";
    }
     
   }
@@ -60,9 +55,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Coding Cage - Login & Registration System</title>
-<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
-<link rel="stylesheet" href="style.css" type="text/css" />
+<title>ShrekBook-Index</title>
+<link rel="stylesheet" href="shrek.css" type="text/css" />
 </head>
 <body>
 
@@ -74,11 +68,11 @@
      <div class="col-md-12">
         
          <div class="form-group">
-             <h2 class="">Sign In.</h2>
+             <h2 class="">Shrek In.</h2>
             </div>
         
          <div class="form-group">
-             <hr />
+            
             </div>
             
             <?php
@@ -97,7 +91,7 @@
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-             <input type="email" name="email" class="form-control" placeholder="Your Email" value="<?php echo $email; ?>" maxlength="40" />
+             Email: <input type="email" name="email" class="form-control" value="<?php echo $email; ?>" maxlength="40" />
                 </div>
                 <span class="text-danger"><?php echo $emailError; ?></span>
             </div>
@@ -105,25 +99,25 @@
             <div class="form-group">
              <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-             <input type="password" name="pass" class="form-control" placeholder="Your Password" maxlength="15" />
+            Password: <input type="password" name="pass" class="form-control"  maxlength="15" />
                 </div>
                 <span class="text-danger"><?php echo $passError; ?></span>
             </div>
             
             <div class="form-group">
-             <hr />
+            
             </div>
             
             <div class="form-group">
-             <button type="submit" class="btn btn-block btn-primary" name="btn-login">Sign In</button>
+             <button type="submit" class="btn btn-block btn-primary" name="btn-login">Shrek In</button>
             </div>
             
             <div class="form-group">
-             <hr />
+             
             </div>
             
             <div class="form-group">
-             <a href="register.php">Sign Up Here...</a>
+             <a href="register.php">Shrek Up Here.</a>
             </div>
         
         </div>
@@ -135,4 +129,3 @@
 
 </body>
 </html>
-<?php ob_end_flush(); ?>

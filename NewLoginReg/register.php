@@ -28,12 +28,9 @@
    $error = true;
    $nameError = "Please enter your full name.";
   } else if (strlen($name) < 3) {
-   $error = true
-   $nameError = "Name must have atleat 3 characters.";
-  } else if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
    $error = true;
-   $nameError = "Name must contain alphabets and space.";
-  }
+   $nameError = "Name must have atleat 3 characters.";
+  } 
   
   //basic email validation
   if ( !filter_var($email,FILTER_VALIDATE_EMAIL) ) {
@@ -54,9 +51,6 @@
    $error = true;
    $passError = "Please enter password.";
   
-  // password encrypt using SHA256();
-  $password = hash('sha256', $pass);
-  
   // if there's no error, continue to signup
   if( !$error ) {
    
@@ -75,7 +69,7 @@
    } 
     
   }
-  
+  }
   
  }
 ?>
@@ -83,9 +77,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Coding Cage - Login & Registration System</title>
+<title></title>
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="shrek.css" type="text/css" />
 </head>
 <body>
 
@@ -97,7 +91,7 @@
      <div class="col-md-12">
         
          <div class="form-group">
-             <h2 class="">Sign Up.</h2>
+             <h2 class="">Shrek Up.</h2>
             </div>
         
          <div class="form-group">
@@ -146,15 +140,15 @@
             </div>
             
             <div class="form-group">
-             <button type="submit" class="btn btn-block btn-primary" name="btn-signup">Sign Up</button>
+             <button type="submit" class="btn btn-block btn-primary" name="btn-signup">Shrek Up</button>
             </div>
             
             <div class="form-group">
-             <hr />
+             
             </div>
             
             <div class="form-group">
-             <a href="index.php">Sign in Here...</a>
+             <a href="index.php">Shrek in Here...</a>
             </div>
         
         </div>
