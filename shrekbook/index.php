@@ -6,6 +6,10 @@
 	?>
 <html>
 	<head>
+	 	<audio controls="controls"  autoplay="true" id="audio_player">
+  			<source src="Allstar.mp3" type="audio/mpeg">
+  		Your browser does not support the audio element.
+		</audio> 
 		<title>Shrekbook</title>
 		<link href="shrek.css" type="text/css" rel="stylesheet" />
 		<link rel="shortcut icon" href="http://www.iconarchive.com/download/i61338/majdi-khawaja/shrek/Shrek.ico" type="favicon/ico" />
@@ -14,6 +18,7 @@
 			<li><a href="#news"></a></li>
 			<li><a href="#contact">ShrekContact</a></li>
 			<li><a href="#about">AboutShrek</a></li>
+
 		<!--	<? if($_SESSION['Logged']) { ?>
 			<li class="UN"> <a href="<?php /*header("Location: http://localhost/shrekbook/index.php");*/ ?>"><?php echo $_SESSION['Username']; ?> </a></li>
 			--><li class="UN"> <a href="<?php header("index.php"); ?>"><?php $forum->LogOut(); ?>Logout </a></li> <!--
