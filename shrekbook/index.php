@@ -6,10 +6,11 @@
 	?>
 <html>
 	<head>
-	 	<audio controls="controls"  autoplay="true" id="audio_player">
-  			<source src="Allstar.mp3" type="audio/mpeg">
-  		Your browser does not support the audio element.
-		</audio> 
+	 	
+		 <object width="100%" height="26px" autoplay="true" data="Allstar.mp3"></object>
+
+		 
+
 		<title>Shrekbook</title>
 		<link href="shrek.css" type="text/css" rel="stylesheet" />
 		<link rel="shortcut icon" href="http://www.iconarchive.com/download/i61338/majdi-khawaja/shrek/Shrek.ico" type="favicon/ico" />
@@ -40,7 +41,9 @@
 				?>
 				<form  action="" method="POST">
 				<div class="center">
-					
+						<audio controls>						 
+						  <source src="Allstar.mp3" type="audio/mpeg">					
+						</audio> 
 					<div class="spacing"><label>Username: </label><input type="text" name="username"></div>
 					<div class="spacing"><label>Email: </label><input type="text" name="email"></div>
 					<div class="spacing"><label>Phone: </label><input type="text" name="phone"></div>
