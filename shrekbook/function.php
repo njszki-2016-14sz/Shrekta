@@ -5,7 +5,7 @@ class Forum {
 
 	public function Login ($Username, $Password) {
 		
-			$query = "(SELECT * FROM user WHERE Username = '$Username' AND Password = '$Password');";
+			$query = "SELECT * FROM user WHERE Username = '$Username' AND Password = 'MD5($Password)';";
 			$link = mysql_fetch_assoc(mysql_query($query));
 			if(!$link) {
 				print("Hibás felhasználónév vagy jelszó!");
@@ -16,10 +16,8 @@ class Forum {
 				$_SESSION['ID'] = $link['ID'];
 				$_SESSION['Logged'] = true;		
 				//header("Location: index.php?action=forum");
-				
-			}
-		
-		
+				echo "Üdv újra  " . $_SESSION['Username'];
+			}				
 	}
 
 	public function LogOut() {
@@ -31,19 +29,19 @@ class Forum {
 	}
 
 	public function Register($Username, $Password, $Pw2, $Email, $Phone, $Name) {
-		
+			$select = "SELECT * FROM user WHERE 1;";
+			$user = mysql_fetch_assoc(mysql_query($select));
 			if(JoEmail($Email)) {
-				$query = "INSERT INTO user (ID, Username, Password, Email, Phone, Name) VALUES (NULL, $Username, MD5($Password), $Email, $Phone, $Name);";
-				$link = mysql_query($query);
-				if(!$link) {
-					print("Hiba");
-				}
-			} else { print("Hibás Email Formátum"); }
-			
-			
-			
-		
-		
+				if($Password == $Pw2) {
+					if($Username != $user['Username']) {
+				
+						$query = "INSERT INTO `user` (`ID`, `Username`, `Password`, `Email`, `Phone`, `Name`) VALUES (NULL, '$Username', 'MD5($Password)', '$Email', '$Phone', '$Name');";
+						$link = mysql_query($query);
+						if(!$link) 	print("Hiba");
+					} else { print("Már van ilyen nevű felhasználó!");}
+				} else { print("Nem egyezik a két jelszó!"); }
+				
+			} else { print("Hibás Email Formátum"); }	
 	}
 
 	public function UpPost($author, $text){
@@ -56,9 +54,7 @@ class Forum {
 					else 
 							return print($_SESSION['Username']); 
 				//	header("Location: index.php");
-				} 
-			
-				
+				}	
 		}
 		
 	public function Like($MyID) {
@@ -73,11 +69,9 @@ class Forum {
 				return $_SESSION['Like'];
 			
 		} else { return "Hiba!"; }
-		
 	}
 	
 	public function ListPost() {
-		
 		
 		$query = mysql_query("SELECT * FROM `post` ORDER BY `author` ASC;");	
 		$result = mysql_query("SELECT COUNT(id) FROM post;");
@@ -89,13 +83,11 @@ class Forum {
 						print("<p>$row[1] <br>");
 						print("$row[2] <br>");
 						//print("<input type='submit' name='like value='$like'>$row[3] like </p>");
-						print(Forum::Like($_SESSION['ID']));
-				}
-			
+					//	print(Forum::Like($_SESSION['ID']));
+				}	
 		}
 		else 
 			return print("hiba");
-		
 	}
 
 	private static function JoEmail($email) {
