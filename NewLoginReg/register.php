@@ -63,46 +63,37 @@ if (isset($_POST['signup'])) {
     </div>
 </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4 well">
-            <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="signupform">
-                <fieldset>
-                    <legend>Shrek Up</legend>
+<div id="wrapper">
 
-                    <div class="form-group">
-                        <label for="name">Shrek Name</label>
-                        <input type="text" name="name" placeholder="Enter Full Name" required value="<?php if($error) echo $name; ?>" class="form-control" />
-                        <span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="name">Email</label>
-                        <input type="text" name="email" placeholder="Email" required value="<?php if($error) echo $email; ?>" class="form-control" />
-                        <span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name">Password</label>
-                        <input type="password" name="password" placeholder="Password" required class="form-control" />
-                        <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name">Confirm Password</label>
-                        <input type="password" name="cpassword" placeholder="Confirm Password" required class="form-control" />
-                        <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="submit" name="signup" value="Sign Up" class="btn btn-primary" />
-                    </div>
-                </fieldset>
-            </form>
-            <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
-            <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
-        </div>
+  <form name="login-form" class="login-form" action="" method="post">
+  
+    <div class="header">
+    <h1>Shrekbook</h1>
+    <span>Only for green ones.</span>
     </div>
+  
+    <div class="content">
+        <input name="name" type="text" class="input username" required class="form-control" required value="<?php if($error) echo $name; ?>" placeholder="Enter Full Name" />
+        <span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
+   
+        <input name="email" type="text" class="input password" class="form-control" placeholder="Email" required class="form-control" required value="<?php if($error) echo $email; ?>" />
+        <span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
+    
+        <input name="password" type="password" class="input password" class="form-control" placeholder="Password" required class="form-control" />
+        <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
+
+        <input name="cpassword" type="password" class="input password" class="form-control" placeholder="Confirm Password" required class="form-control" />
+        <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
+
+    </div>
+    <div class="footer">
+    <input type="submit" name="login" value="Shrek Up" class="button" class="btn btn-primary" />
+  
+    </div>
+  
+  </form>
+
+</div>
     <div class="row">
         <div class="col-md-4 col-md-offset-4 text-center">    
         <a href="login.php">Shrek In</a>
@@ -111,3 +102,5 @@ if (isset($_POST['signup'])) {
 </div>
 </body>
 </html>
+
+
