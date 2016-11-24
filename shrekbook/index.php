@@ -11,13 +11,15 @@
 		<link rel="shortcut icon" href="http://www.iconarchive.com/download/i61338/majdi-khawaja/shrek/Shrek.ico" type="favicon/ico" />
 		<ul>
 			<li><a class="active" href="#home">MainShrek</a></li>
-			<li><a href="#news"></a></li>
+		
 			<li><a href="#contact">ShrekContact</a></li>
 			<li><a href="#about">AboutShrek</a></li>
 		<!--	<? if($_SESSION['Logged']) { ?>
 			<li class="UN"> <a href="<?php /*header("Location: http://localhost/shrekbook/index.php");*/ ?>"><?php echo $_SESSION['Username']; ?> </a></li>
-			--><li class="UN"> <a href="<?php header("index.php"); ?>"><?php $forum->LogOut(); ?>Logout </a></li> <!--
+			--><li class="UN"> <a href="<?php header("index.php"); ?>"><?php $forum->LogOut(); ?>Shrek out </a></li> <!--
 			<? } else { ?><li class="UN"> <a href="<?php /*header("Location: http://localhost/shrekbook/index.php");*/ ?>">Login </a></li> <? } ?> -->
+				<li><a href="#hidden"></a></li>
+					
 		</ul>
 	</head>
 	
@@ -37,9 +39,7 @@
 	}
 	
 		if(isset($_POST['Reg1'])) {
-	
-			
-				
+
 				?>
 				<form  action="" method="POST">
 				<div class="center">
@@ -48,16 +48,11 @@
 					<div class="spacing"><label>Email: </label><input type="text" name="email"></div>
 					<div class="spacing"><label>Phone: </label><input type="text" name="phone"></div>
 					<div class="spacing"><label>Name: </label><input type="text" name="name"></div>
+					<hr/>
 					<div class="spacing"><label>Password: </label><input type="password" name="password"></div>
-					<div class="spacing"><label>Password: </label><input type="password" name="password2"></div>
+					<div class="spacing"><label>Confirm Password: </label><input type="password" name="password2"></div>
 					<div class="spacing"><input type="submit" name="Register" value="Shrek Up"></div>
-					
-					
-					
-					
-					
-					
-					
+	
 				</div>
 				</form>	
 				
@@ -98,10 +93,6 @@
 
 			$forum->ListPost();			
 		?>
-		</div>
-	
-	</div>
-
 	</body>
 	
 
