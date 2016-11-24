@@ -35,7 +35,7 @@ include_once 'post.php';
 		<div class="newpost">
 			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="uppost">
 				<div class="form-group">
-                    <label for="name">Text</label>
+                    <label for="name">Post</label>
 					
 					<span class="text-danger"><?php if (isset($text_error)) echo $text_error; ?></span>
                 </div>
@@ -43,21 +43,15 @@ include_once 'post.php';
 		
 			</div>
 			
-				<div id="post-editor" class="post-editor js-post-editor">
+				<div class="post-editor js-post-editor">
 
-					<div style="position: relative;">     
+					<div>     
 						<div class="wmd-container">
 							<div id="wmd-button-bar" class="wmd-button-bar"></div>
-							<textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+							<textarea style="width: 2097px; height: 126px;" id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
 						</div>
-					</div>
-
-					<div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
-					<div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
-
-					<div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
-					
-					<input type="submit" name="UpPost" value="Shrek Up!">
+					</div>	
+					<input type="submit" name="UpPost" value="Post Up!" class="footer" class="button" class="btn btn-primary">
 
 
 

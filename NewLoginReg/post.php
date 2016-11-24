@@ -26,9 +26,9 @@
 				
 				while($row =  mysqli_fetch_array($link)) {
 					echo "<div id='post'>";
-					echo "<div id='name'>";	echo $row['Author'];echo "</div>";
-					echo "<div id='time'>";	echo $row['Date'];echo "</div>";
-					echo "<div id='text'>";	echo $row['Text'];	echo "</div>";
+					echo "<div id='postname'>";	echo $row['Author'];echo "</div>";
+					echo "<div id='posttime'>";	echo $row['Date'];echo "</div>";
+					echo "<div id='posttext'>";	echo $row['Text'];	echo "</div>";
 					echo "</div>";
 				}
 			} else  return print("Hibás lekérdezés"); 
