@@ -21,7 +21,7 @@
 		
 		public function ListPost($con){
 			
-			$link = mysqli_query($con, "SELECT * FROM `post` WHERE 1 ORDER BY `Date` DESC");
+			$link = mysqli_query($con, "SELECT * FROM `post` WHERE 1 ORDER BY `ID` DESC");
 			if($link) {
 				
 				while($row =  mysqli_fetch_array($link)) {

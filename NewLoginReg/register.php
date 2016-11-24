@@ -87,7 +87,7 @@ if (isset($_POST['signup'])) {
 
     </div>
     <div class="footer">
-    <input type="submit" name="login" value="Shrek Up" class="button" class="btn btn-primary" />
+    <input type="submit" name="signup" value="Shrek Up" class="button" class="btn btn-primary" />
   
     </div>
   

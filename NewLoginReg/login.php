@@ -74,8 +74,6 @@ if (isset($_POST['login'])) {
     </div>
 </div>
 
-</body>
-</html>
 
 <div id="wrapper">
 
@@ -100,3 +98,7 @@ if (isset($_POST['login'])) {
   </form>
 
 </div>
+
+
+</body>
+</html>
