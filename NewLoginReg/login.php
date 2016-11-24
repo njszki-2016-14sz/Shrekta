@@ -40,8 +40,8 @@ if (isset($_POST['login'])) {
         </div>
         <div class="collapse navbar-collapse" id="navbar1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="login.php">Login</a></li>
-                <li><a href="register.php">Sign Up</a></li>
+                <li class="active"><a href="login.php">Shrek in</a></li>
+                <li><a href="register.php">Shrek Up</a></li>
             </ul>
         </div>
     </div>
@@ -52,7 +52,7 @@ if (isset($_POST['login'])) {
         <div class="col-md-4 col-md-offset-4 well">
             <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="loginform">
                 <fieldset>
-                    <legend>Login</legend>
+                    <legend>Shrek in</legend>
                     
                     <div class="form-group">
                         <label for="name">Email</label>
@@ -74,7 +74,7 @@ if (isset($_POST['login'])) {
     </div>
     <div class="row">
         <div class="col-md-4 col-md-offset-4 text-center">    
-        New User? <a href="register.php">Sign Up Here</a>
+        New User? <a href="register.php">Shrek Up Here</a>
         </div>
     </div>
 </div>

@@ -7,7 +7,8 @@ include_once 'dbconnect.php';
 <head>
     <title>Home | Koding Made Simple</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" >
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link href="shrek.css" type="text/css" rel="stylesheet" />
+    <link rel="shortcut icon" href="http://www.iconarchive.com/download/i61338/majdi-khawaja/shrek/Shrek.ico" type="favicon/ico" />
 </head>
 <body>
 
