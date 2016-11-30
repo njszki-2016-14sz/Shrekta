@@ -35,10 +35,10 @@ include_once 'post.php';
 		<div class="newpost">
 			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="uppost">
 				<div class="form-group">
-                    <label for="name">Post</label>
+                    <label id="posttext" for="name">Post Here !!</label>
 					
 					<span class="text-danger"><?php if (isset($text_error)) echo $text_error; ?></span>
-                </div>
+                </div> 
 			
 		
 			</div>
@@ -48,11 +48,10 @@ include_once 'post.php';
 					<div>     
 						<div class="wmd-container">
 							<div id="wmd-button-bar" class="wmd-button-bar"></div>
-							<textarea style="width: 2097px; height: 126px;" id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+							<textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
 						</div>
 					</div>	
-					<input type="submit" name="UpPost" value="Post Up!" class="footer" class="button" class="btn btn-primary">
-
+					<input id="uppost" type="submit" name="UpPost" value="Post Up!" class="footer" class="button" class="btn btn-primary">
 
 
 
