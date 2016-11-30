@@ -12,6 +12,9 @@ include_once 'post.php';
     <link rel="shortcut icon" href="http://www.iconarchive.com/download/i61338/majdi-khawaja/shrek/Shrek.ico" type="favicon/ico" />
 </head>
 <body>
+<audio controls>
+  <source src="Allstar.mp3" type="audio/mpeg">
+</audio> 
 
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
