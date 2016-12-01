@@ -75,13 +75,15 @@ if (isset($_POST['signup'])) {
 </div>
     </div>
 </div>
-<div> <img id="pics"  src="shrek.png" > </div>
+<div> <img id="pics"  src="shrek.png" > 
+ <img src="szamar.png" > </div>
 
         <script>
         $( document ).ready(function() {
           $( "div" ).effect( "slide", "slow" );
         });
         </script>
+
 </body>
 </html>
 
