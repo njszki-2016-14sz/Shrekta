@@ -96,7 +96,8 @@ include'funct.php';
   </form>
 
 </div>
-<div> <img id="pics"  src="shrek.png" > </div>
+<div> <img id="pics"  src="shrek.png" > 
+</div>
 
         <script>
         $( document ).ready(function() {
