@@ -21,6 +21,8 @@ include'funct.php';
     <meta content="width=device-width, initial-scale=1.0" name="viewport" >
     <link href="shrek.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="http://www.iconarchive.com/download/i61338/majdi-khawaja/shrek/Shrek.ico" type="favicon/ico" />
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 <audio controls autoplay="autoplay">
@@ -94,7 +96,13 @@ include'funct.php';
   </form>
 
 </div>
+<div> <img id="pics"  src="shrek.png" > </div>
 
+        <script>
+        $( document ).ready(function() {
+          $( "div" ).effect( "slide", "slow" );
+        });
+        </script>
 
 </body>
 </html>
