@@ -28,6 +28,7 @@ include('Dbconnect.php');
 				}
 				if (!$error) {
 					if(mysqli_query($con, "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
+						header("Location: login.php");
 						$successmsg = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
 					} else {
 						$errormsg = "Error in registering...Please try again later!";
