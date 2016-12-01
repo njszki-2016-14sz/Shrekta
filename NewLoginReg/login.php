@@ -5,22 +5,11 @@ if(isset($_SESSION['usr_id'])!="") {
     header("Location: index.php");
 }
 
-include_once 'dbconnect.php';
-//check if form is submitted
-if (isset($_POST['login'])) {
+include'funct.php';
+	if (isset($_POST['login'])) {
+		Shrek::Login($_POST['email'], $_POST['password'], $con);
+	}
 
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
-    $result = mysqli_query($con, "SELECT * FROM users WHERE email = '" . $email. "' and password = '" . md5($password) . "'");
-
-    if ($row = mysqli_fetch_array($result)) {
-        $_SESSION['usr_id'] = $row['id'];
-        $_SESSION['usr_name'] = $row['name'];
-        header("Location: index.php");
-    } else {
-        $errormsg = "Incorrect Email or Password!!!";
-    }
-}
 
 ?>
 
@@ -30,8 +19,6 @@ if (isset($_POST['login'])) {
     <title>Shrekbook</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" >
     <link href="shrek.css" type="text/css" rel="stylesheet" />
-      <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="shortcut icon" href="http://www.iconarchive.com/download/i61338/majdi-khawaja/shrek/Shrek.ico" type="favicon/ico" />
 </head>
 <body>
@@ -104,13 +91,7 @@ if (isset($_POST['login'])) {
   </form>
 
 </div>
-    <div> <img id="pics"  src="shrek.png" > </div>
 
-        <script>
-        $( document ).ready(function() {
-          $( "div" ).effect( "slide", "slow" );
-        });
-        </script>
 
 </body>
 </html>
