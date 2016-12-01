@@ -23,8 +23,10 @@ include'funct.php';
     <link rel="shortcut icon" href="http://www.iconarchive.com/download/i61338/majdi-khawaja/shrek/Shrek.ico" type="favicon/ico" />
 </head>
 <body>
-<audio controls>
-  <source src="Allstar.mp3" type="audio/mpeg">
+<audio controls autoplay="autoplay">
+  <source src="Allstar.mp3" type="audio/mpeg" preload="auto">
+    <source src="Allstar.ogg" type="audio/ogg" >
+  <p>Your browser does not support the audio element.</p>
 </audio> 
 
 <nav class="navbar navbar-default" role="navigation">

@@ -25,9 +25,11 @@ if (isset($_POST['signup'])) {
     <link rel="shortcut icon" href="http://www.iconarchive.com/download/i61338/majdi-khawaja/shrek/Shrek.ico" type="favicon/ico" />
 </head>
 <body>
-<audio controls>
-  <source src="Allstar.mp3" type="audio/mpeg">
-</audio> 
+<audio controls autoplay="autoplay">
+  <source src="Allstar.ogg" type="audio/ogg">
+  <source src="Allstar.mp3" type="audio/mpeg" preload="auto">
+  <p>Your browser does not support the audio element.</p>
+</audio>
 
         <div class="collapse navbar-collapse" id="navbar1">
             <ul class="nav navbar-nav navbar-right">
