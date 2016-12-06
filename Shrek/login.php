@@ -4,11 +4,11 @@ session_start();
 if(isset($_SESSION['usr_id'])!="") {
     header("Location: index.php");
 }
-$errormsg = "";
+//$errormsg = "";
 include'funct.php';
 	if (isset($_POST['login'])) {
 		
-		Shrek::Login($_POST['email'], $_POST['password'], $con, $errormsg);
+		Shrek::Login($_POST['email'], $_POST['password'], $con);
 	}
 
 
@@ -80,6 +80,14 @@ include'funct.php';
     <div class="header">
     <h1>Shrekbook</h1>
     <span>What are you doing in my swamp?</span>
+	<?php
+	if(isset($_SESSION["error"]))
+				{
+					$error=$_SESSION["error"];?>
+					<br><span id='hint'><?php print $error;?></span><br><?php
+					$_SESSION["error"]=null;
+				}
+	?>
     </div>
   
     <div class="content">

@@ -12,32 +12,33 @@ include('Dbconnect.php');
 				   
 				if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
 					$error = true;
-					$name_error = "Name must contain only alphabets and space";
+					$_SESSION['error'] = "Name must contain only alphabets and space";
 				}
 				if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
 					$error = true;
-					$email_error = "Please Enter Valid Email ID";
+					$_SESSION['error'] = "Please Enter Valid Email ID";
 				}
 				if(strlen($password) < 6) {
 					$error = true;
-					$password_error = "Password must be minimum of 6 characters";
+					$_SESSION['error'] = "Password must be minimum of 6 characters";
 				}
 				if($password != $cpassword) {
 					$error = true;
-					$cpassword_error = "Password and Confirm Password doesn't match";
+					$_SESSION['error'] = "Password and Confirm Password doesn't match";
 				}
 				if (!$error) {
 					if(mysqli_query($con, "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
 						header("Location: login.php");
-						$successmsg = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
+						$_SESSION['error'] = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
 					} else {
-						$errormsg = "Error in registering...Please try again later!";
+						$_SESSION['error'] = "Error in registering...Please try again later!";
 					}
 				}
 			}
+			//Shrek::Close($con);
 		}
 		
-		public function Login($email, $password, $con, $errormsg){
+		public function Login($email, $password, $con){
 			
 
 				$email = mysqli_real_escape_string($con, $email);
@@ -49,9 +50,10 @@ include('Dbconnect.php');
 					$_SESSION['usr_name'] = $row['name'];
 					header("Location: index.php");
 				} else {
-					$errormsg = "Incorrect Email or Password!!!";
+					$_SESSION['error'] = "Incorrect Email or Password!!!";
 				}
-			}
+				//Shrek::Close($con);
+		}
 			
 			
 		public function Logout(){
@@ -61,6 +63,7 @@ include('Dbconnect.php');
 				unset($_SESSION['usr_id']);
 				unset($_SESSION['usr_name']);
 				header("Location: index.php");
+				$_SESSION['error'] = "Sikeresen kijelentkeztél.";
 			} else {
 				header("Location: index.php");
 			}
@@ -76,13 +79,13 @@ include('Dbconnect.php');
 			
 			if(!empty($text)){
 				$link = mysqli_query($con, "INSERT INTO `post` (`ID`, `Author`, `Text`, `Date`) VALUES (NULL, '$name', '$text', CURTIME())");
-					if(!$link) return print("Hibás lekérdezés!");
+					if(!$link) return $_SESSION['error'] = "Hibás lekérdezés!";
 				
 				
 			} else {
-				return print("Nem adtál meg üzenetet");
+				$_SESSION['error'] = "Nem adtál meg üzenetet";
 			}
-			
+			//Shrek::Close($con);
 			
 		}
 		
@@ -98,12 +101,17 @@ include('Dbconnect.php');
 					echo "<div id='text'>";	echo $row['Text'];	echo "</div>";
 					echo "</div>";
 				}
-			} else  return print("Hibás lekérdezés"); 
+			} else  $_SESSION['error'] = "Hibás lekérdezés"; 
 			
-			
+			//Shrek::Close($con);
 		}
 		
-		
+		public function Close($con) {
+			$close = mysqli_close($con);
+			if(!$close){
+				die('Close error: '.mysql_error());
+			}
+		}
 		
 	}
 

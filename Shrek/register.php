@@ -12,6 +12,7 @@ $error = false;
 
 if (isset($_POST['signup'])) {
    Shrek::Register($con, $_POST['name'], $_POST['email'], $_POST['password'], $_POST['cpassword'], $error);
+	?><?php
 }
 
 ?>
@@ -49,22 +50,31 @@ if (isset($_POST['signup'])) {
     <div class="header">
     <h1>Shrekbook</h1>
     <span>Only for green ones.</span>
+	<?php
+				if(isset($_SESSION["error"]))
+				{
+					$error=$_SESSION["error"];?>
+					<span id='hint'><?php print $error;?></span><br><?php
+					$_SESSION["error"]=null;
+				}
+	?>
     </div>
   
     <div class="content">
-        <input name="name" type="text" class="input username" required class="form-control" required value="<?php if($error) echo $name; ?>" placeholder="Enter Full Name" />
-        <span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
+        <input name="name" type="text" class="input username" required class="form-control" placeholder="Enter Full Name" />
+        
    
-        <input name="email" type="text" class="input password" class="form-control" placeholder="Email" required class="form-control" required value="<?php if($error) echo $email; ?>" />
-        <span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
+        <input name="email" type="text" class="input password" class="form-control" placeholder="Email" required class="form-control"  />
+       
     
         <input name="password" type="password" class="input password" class="form-control" placeholder="Password" required class="form-control" />
-        <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
+
 
         <input name="cpassword" type="password" class="input password" class="form-control" placeholder="Confirm Password" required class="form-control" />
-        <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
+        
 
     </div>
+	
     <div class="footer">
     <input type="submit" name="signup" value="Shrek Up" class="button" class="btn btn-primary" />
   
