@@ -26,6 +26,9 @@ include 'funct.php';
             <ul class="nav navbar-nav navbar-right">
                 <?php if (isset($_SESSION['usr_id'])) { ?>
                 <li><p class="navbar-text">Signed in as <?php echo $_SESSION['usr_name']; ?></p></li>
+					<?php if(isset($_SESSION['IsAdmin'])) { ?>
+						<li><a href="admin.php">Admin</a></li>
+					<?php } ?>
                 <li><a href="logout.php">Shrek Out</a></li>
                 <?php } else { ?>
                 <li><a href="login.php">Shrek in</a></li>
@@ -63,6 +66,35 @@ include 'funct.php';
 
 				</div>
 			</div>
+			
+			<!--- Admin menü -->
+			
+			<?php if(isset($_SESSION['IsAdmin']))  { ?>
+				
+				<div class="menu">
+					<ul>
+						<li><a href="#" name="changepass">Jelszó Módosítás</a></li>
+						<li><a href="#" name="deleteuser">Felhasználó törlése</a></li>
+						<li><a href="#" name="makeadmin">Admin kinevezés</a></li>
+					</ul>
+				
+				<?php if(isset($)
+				
+				</div>
+			
+			<?php  ?>
+			
+			<!-- User menü -->
+			
+			<?php } else {
+				
+				
+				
+			}
+			?>
+			
+			<!----------------------------------------------------------->
+			
 			<?php
 			
 				$error = false;

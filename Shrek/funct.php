@@ -48,6 +48,7 @@ include('Dbconnect.php');
 				if ($row = mysqli_fetch_array($result)) {
 					$_SESSION['usr_id'] = $row['id'];
 					$_SESSION['usr_name'] = $row['name'];
+					$_SESSION['IsAdmin'] = $row['admin'];
 					header("Location: index.php");
 				} else {
 					$_SESSION['error'] = "Incorrect Email or Password!!!";
@@ -99,6 +100,11 @@ include('Dbconnect.php');
 					echo "<div id='name'>";	echo $row['Author'];echo "</div>";
 					echo "<div id='time'>";	echo $row['Date'];echo "</div>";
 					echo "<div id='text'>";	echo $row['Text'];	echo "</div>";
+					
+					if(isset($_SESSION['IsAdmin'])){
+						echo "<div id='admintextarea'><input type='submit' name='delete' value='Törlés'/></div> ";
+						
+					}
 					echo "</div>";
 				}
 			} else  $_SESSION['error'] = "Hibás lekérdezés"; 
