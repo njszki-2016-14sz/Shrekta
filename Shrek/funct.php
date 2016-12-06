@@ -120,6 +120,25 @@ include('Dbconnect.php');
 		}
 		
 	}
+	
+	class Admin {
+		
+		public function DeleteUser($userid, $con) {
+			
+			$res = mysqli_query($con, "DELETE * FROM `users` WHERE `id`='$userid';");
+			if($res) $_SESSION['adminmsg'] = "Sikeresen törölted ".$userid." idjű felhasználót!";
+			else $_SESSION['adminmsg'] = "Hibás lekérdezés!";
+			
+		}
+		
+		public function SetAdmin($userid, $con) {
+			$res = mysqli_query($con, "UPDATE users SET admin='1' WHERE `id`='$userid';");
+			if($res) $_SESSION['adminmsg'] = "Sikeresen adminná tetted ".$userid." idjű felhasználót!";
+			else $_SESSION['adminmsg'] = "Hibás lekérdezés!";
+			
+		}
+		
+	}
 
 
 

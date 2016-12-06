@@ -27,9 +27,9 @@ include 'funct.php';
                 <?php if (isset($_SESSION['usr_id'])) { ?>
                 <li><p class="navbar-text">Signed in as <?php echo $_SESSION['usr_name']; ?></p></li>
 					<?php if(isset($_SESSION['IsAdmin'])) { ?>
-						<li><a href="admin.php">Admin</a></li>
+						<li><a href="index.php?action=admin">Admin</a></li>
 					<?php } ?>
-                <li><a href="logout.php">Shrek Out</a></li>
+                <li><a href="index.php?action=logout">Shrek Out</a></li>
                 <?php } else { ?>
                 <li><a href="login.php">Shrek in</a></li>
                 <li><a href="register.php">Shrek Up</a></li>
@@ -73,12 +73,31 @@ include 'funct.php';
 				
 				<div class="menu">
 					<ul>
-						<li><a href="#" name="changepass">Jelszó Módosítás</a></li>
-						<li><a href="#" name="deleteuser">Felhasználó törlése</a></li>
-						<li><a href="#" name="makeadmin">Admin kinevezés</a></li>
+						<li><a href="index.php?action=changepass" name="changepass">Jelszó Módosítás</a></li>
+						<li><a href="index.php?action=deluser" name="deleteuser">Felhasználó törlése</a></li>
+						<li><a href="index.php?action=makeadmin" name="makeadmin">Admin kinevezés</a></li>
 					</ul>
 				
-				<?php if(isset($)
+				<?php 
+				if(isset($_GET['action'])) {
+					switch ($_GET['action'])
+					{
+						case 'changepass': User::ChangePass($_SESSION['usr_id'], $_POST['OldPass'],$_POST['NewPass']); break;
+						case 'deluser': Admin::DeleteUser($_POST['DelUserID']); break;
+						case 'makeadmin': Admin::SetAdmin($_POST['NewAdminID']); break;
+						case 'admin': Admin::SetAdmin($_POST['NewAdminID']); break;
+						case 'logout': Shrek::LogOut(); break;
+						
+						
+					}
+				}
+					if(isset($_SESSION["adminmsg"]))
+					{
+						$error=$_SESSION["adminmsg"];?>
+						<span id='hint'><?php print $error;?></span><br><?php
+						$_SESSION["adminmsg"]=null;
+					} 
+				?>
 				
 				</div>
 			
