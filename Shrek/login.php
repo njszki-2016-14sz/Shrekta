@@ -23,8 +23,10 @@ include'funct.php';
     <link rel="shortcut icon" href="http://www.iconarchive.com/download/i61338/majdi-khawaja/shrek/Shrek.ico" type="favicon/ico" />
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script src="ho.js"></script>
 </head>
 <body>
+
 <audio controls autoplay="autoplay">
   <source src="Allstar.mp3" type="audio/mpeg" preload="auto">
     <source src="Allstar.ogg" type="audio/ogg" >

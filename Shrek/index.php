@@ -10,14 +10,16 @@ include 'funct.php';
     <meta content="width=device-width, initial-scale=1.0" name="viewport" >
     <link href="shrek.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="http://www.iconarchive.com/download/i61338/majdi-khawaja/shrek/Shrek.ico" type="favicon/ico" />
+    <script src="ho.js"></script>
+
 </head>
 <body>
+
 <audio controls autoplay="autoplay">
   <source src="Allstar.mp3" type="audio/mpeg" preload="auto">
     <source src="Allstar.ogg" type="audio/ogg" >
   <p>Your browser does not support the audio element.</p>
 </audio>  
-
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         
@@ -48,7 +50,7 @@ include 'funct.php';
 					<span class="text-danger"><?php if (isset($text_error)) echo $text_error; ?></span>
                 </div> 
 			
-		
+	
 			</div>
 			
 				<div class="post-editor js-post-editor">
