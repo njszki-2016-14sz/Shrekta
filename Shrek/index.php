@@ -25,15 +25,18 @@ include 'funct.php';
         <div class="collapse navbar-collapse" id="navbar1">
             <ul class="nav navbar-nav navbar-right">
                 <?php if (isset($_SESSION['usr_id'])) { ?>
-                <li><p class="navbar-text"><a href="index.php?action=index">Signed in as <?php echo $_SESSION['usr_name']; ?></a></p></li>
+                <li><a href="index.php?action=index">Signed in as <?php echo $_SESSION['usr_name']; ?></a></li>
 					<?php if(isset($_SESSION['IsAdmin'])) { ?>
 						<li><a href="index.php?action=admin">Admin</a></li>
-					<?php } ?>
+					<?php } else { ?>
+					<li><a href="index.php?action=profil">Profil</a></li> <?php } ?>
                 <li><a href="index.php?action=logout">Shrek Out</a></li>
-                <?php } else { ?>
+                <?php 
+					} else { ?>
                 <li><a href="index.php?action=login">Shrek in</a></li>
                 <li><a href="index.php?action=register">Shrek Up</a></li>
-                <?php } ?>
+                <?php }
+				?>
             </ul>
         </div>
     </div>
@@ -57,6 +60,7 @@ include 'funct.php';
 					</div>	
 					<input id="uppost" type="submit" name="UpPost" value="Post Up!" class="footer" class="button" class="btn btn-primary">
 				</div>
+				</form>
 			</div>
 			
 			<!--- Admin menü -->
@@ -76,8 +80,8 @@ include 'funct.php';
 					{						
 						case 'deluser': Admin::DeleteUser($_POST['DelUserID']); break;
 						case 'makeadmin': Admin::SetAdmin($_POST['NewAdminID']); break;
-						case 'admin': Admin::SetAdmin($_POST['NewAdminID']); break;
-						case 'logout': Shrek::LogOut(); break;
+						
+						
 					}
 				}
 					if(isset($_SESSION["adminmsg"]))
@@ -87,15 +91,16 @@ include 'funct.php';
 						$_SESSION["adminmsg"]=null;
 					} 
 				?>
-				</div>
-			
+				</div>			
 			
 			<!-- User menü -->
 			
 			<?php } else { ?>
-				
-				<li><a href="index.php?action=changepass" name="changepass">Jelszó Módosítás</a></li>
-				
+				<div class="menu">
+					<ul>
+						<li><a href="index.php?action=changepass" name="changepass">Jelszó Módosítás</a></li>
+					</ul>
+				</div>
 		<?php	}
 			?>
 		
@@ -104,8 +109,12 @@ include 'funct.php';
 		if(isset($_GET['action'])) {
 			switch ($_GET['action'])
 			{	
+						case 'logout': User::LogOut(); break;
 						case 'changepass':
 						
+						if(isset($_POST['changepassword'])) {
+							User::ChangePass($_POST['oldpass'],$_POST['newpass'], $_POST['cnewpass'], $_SESSION['usr_id'], $con);
+						}
 						?>
 				<div id="wrapper">
 
@@ -113,7 +122,7 @@ include 'funct.php';
 						  
 							<div class="header">
 							<h1>Shrekbook</h1>
-							<span>Only for green ones.</span>
+							<span>Change Your Green Side</span>
 							<?php
 										if(isset($_SESSION["error"]))
 										{
@@ -131,7 +140,6 @@ include 'funct.php';
 
 								<input name="cnewpass" type="password" class="input password" class="form-control" placeholder="Confirm Password" required class="form-control" />
 								
-
 							</div>
 							
 							<div class="footer">
@@ -144,11 +152,8 @@ include 'funct.php';
 						</div>
 							</div>
 						</div>
-		
 			<?php 
-				if(isset($_POST['changepassword'])) {
-					User::ChangePass($_POST['olddass'],$_POST['newpass'], $_POST['cnewpass'], $_SESSION['usr_id'], $con);
-				}
+				
 				
 				; break;
 				
@@ -156,8 +161,8 @@ include 'funct.php';
 		}?>
 		
 		<!--- POSTOK --------------------------------------------------------------->
+		
 		<?php
-			
 				$error = false;
 					if(isset($_POST['UpPost'])){
 						if(empty($_POST['post-text'])){
@@ -177,7 +182,6 @@ include 'funct.php';
 				?>
 		</div> 
 		
-		
 		<!--- LOGIN - REGISTER !! ------------------------------------------------------------------------------------------------------------------------------------>
 		
 		<?php 
@@ -192,10 +196,8 @@ include 'funct.php';
 							//$errormsg = "";
 						
 						if (isset($_POST['login'])) {	
-							Shrek::Login($_POST['email'], $_POST['password'], $con);
+							User::Login($_POST['email'], $_POST['password'], $con);
 						}
-
-
 		?>
 				
 					<div id="wrapper">
@@ -247,10 +249,9 @@ include 'funct.php';
 						}
 						$error = false;
 						if (isset($_POST['signup'])) {
-						   Shrek::Register($con, $_POST['name'], $_POST['email'], $_POST['password'], $_POST['cpassword'], $error);
+						   User::Register($con, $_POST['name'], $_POST['email'], $_POST['password'], $_POST['cpassword'], $error);
 
 						}
-
 				?>
 						<div id="wrapper">
 
@@ -272,25 +273,18 @@ include 'funct.php';
 							<div class="content">
 								<input name="name" type="text" class="input username" required class="form-control" placeholder="Enter Full Name" />
 								
-						   
 								<input name="email" type="text" class="input password" class="form-control" placeholder="Email" required class="form-control"  />
-							   
-							
+							   							
 								<input name="password" type="password" class="input password" class="form-control" placeholder="Password" required class="form-control" />
-
 
 								<input name="cpassword" type="password" class="input password" class="form-control" placeholder="Confirm Password" required class="form-control" />
 								
-
 							</div>
 							
 							<div class="footer">
-							<input type="submit" name="signup" value="Shrek Up" class="button" class="btn btn-primary" />
-						  
-							</div>
-						  
+							<input type="submit" name="signup" value="Shrek Up" class="button" class="btn btn-primary" />					  
+							</div>					  
 						  </form>
-
 						</div>
 							</div>
 						</div>
@@ -302,14 +296,10 @@ include 'funct.php';
 								  $( "div" ).effect( "slide", "slow" );
 								});
 								</script>
-
-						<?php
-						
-						
+						<?php						
 						; break;
 					}
-		}
-	
+		}	
 				?>
 		<!-- LOG/REG Vége -->	
 </body>

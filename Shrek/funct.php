@@ -1,7 +1,42 @@
 <?php
-include('Dbconnect.php');
-	Class Shrek {
+ 
+
+	$con = mysqli_connect("localhost", "root", "", "shrekbook") or die("Error " . mysqli_error($con));
+	Class DB {
+		/*public function connect($con) {
+
+		public function query($con) {
+*/
+		public function Close($con) {
+			$close = mysqli_close($con);
+			if(!$close){
+				die('Close error: '.mysql_error());
+			}
+		}
 		
+		//ezt még át kell írni az indexbe
+	}
+	Class User {
+		public function ChangePass($oldpass, $newpass, $cnewpass, $usrid, $con) {
+			
+			$oldpass = mysqli_real_escape_string($con, $oldpass);
+			$newpass = mysqli_real_escape_string($con, $newpass);
+			$cnewpass = mysqli_real_escape_string($con, $cnewpass);
+			
+			$result = mysqli_query($con, "SELECT '$usrid' FROM users WHERE password = '" . md5($oldpass) . "'");
+
+				if ($result) {
+					if($newpass == $cnewpass && $oldpass != $newpass) {
+						$query = mysqli_query($con, "UPDATE `users` SET `password`= ".md5($newpass)." WHERE id = ".$usrid.";");
+						$_SESSION['error'] = 'Sikeresen megváltoztattad a jelszavad! \n Kérlek jelentkezz be újra!';
+						print($query);
+						User::Logout();
+					} else {
+						$_SESSION['error'] = 'A megadott jelszók nem egyeznek';
+					}
+				} else $_SESSION['error'] = 'Hibás lekérdezés';
+			DB::Close($con);	
+		}
 		
 		public function Register($con, $name, $email, $password, $cpassword, $error) {
 			if (isset($_POST['signup'])) {
@@ -20,11 +55,11 @@ include('Dbconnect.php');
 				}
 				if(strlen($password) < 6) {
 					$error = true;
-					$_SESSION['error'] = "Password must be minimum of 6 characters";
+					$_SESSION['error'] = "Password must be minimum of 6 characters, dick weed";
 				}
 				if($password != $cpassword) {
 					$error = true;
-					$_SESSION['error'] = "Password and Confirm Password doesn't match";
+					$_SESSION['error'] = "Password and Confirm Password doesn't match, you dick weed";
 				}
 				if (!$error) {
 					if(mysqli_query($con, "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
@@ -35,7 +70,7 @@ include('Dbconnect.php');
 					}
 				}
 			}
-			Shrek::Close($con);
+			DB::Close($con);
 		}
 		
 		public function Login($email, $password, $con){
@@ -48,12 +83,12 @@ include('Dbconnect.php');
 				if ($row = mysqli_fetch_array($result)) {
 					$_SESSION['usr_id'] = $row['id'];
 					$_SESSION['usr_name'] = $row['name'];
-					$_SESSION['IsAdmin'] = $row['admin'];
+					if($row['admin'] == true) $_SESSION['IsAdmin'] = true;
 					header("Location: index.php");
 				} else {
 					$_SESSION['error'] = "Incorrect Email or Password!!!";
 				}
-				Shrek::Close($con);
+				DB::Close($con);
 		}
 			
 			
@@ -63,19 +98,13 @@ include('Dbconnect.php');
 				session_destroy();
 				unset($_SESSION['usr_id']);
 				unset($_SESSION['usr_name']);
+				unset($_SESSION['IsAdmin']);
 				header("Location: index.php");
 				$_SESSION['error'] = "Sikeresen kijelentkeztél.";
 			} else {
 				header("Location: index.php");
 			}
-		}
-		
-		public function Close($con) {
-			$close = mysqli_close($con);
-			if(!$close){
-				die('Close error: '.mysql_error());
-			}
-		}
+		}	
 	}
 	
 	class Post{
@@ -92,9 +121,7 @@ include('Dbconnect.php');
 				
 			} else {
 				$_SESSION['error'] = "Nem adtál meg üzenetet";
-			}
-			Shrek::Close($con);
-			
+			}			
 		}
 		
 		public function ListPost($con){
@@ -114,11 +141,8 @@ include('Dbconnect.php');
 					}
 					echo "</div>";
 				}
-			} else  $_SESSION['error'] = "Hibás lekérdezés"; 
-			
-			Shrek::Close($con);
-		}
-		
+			} else  $_SESSION['error'] = "Hibás lekérdezés"; 			
+		}	
 		
 		
 	}
@@ -130,39 +154,19 @@ include('Dbconnect.php');
 			$res = mysqli_query($con, "DELETE * FROM `users` WHERE `id`='$userid';");
 			if($res) $_SESSION['adminmsg'] = "Sikeresen törölted ".$userid." idjű felhasználót!";
 			else $_SESSION['adminmsg'] = "Hibás lekérdezés!";
-			Shrek::Close($con);
+			DB::Close($con);
 		}
 		
 		public function SetAdmin($userid, $con) {
 			$res = mysqli_query($con, "UPDATE `users` SET `admin`='1' WHERE `id`='$userid';");
 			if($res) $_SESSION['adminmsg'] = "Sikeresen adminná tetted ".$userid." idjű felhasználót!";
 			else $_SESSION['adminmsg'] = "Hibás lekérdezés!";
-			Shrek::Close($con);
+			DB::Close($con);
 		}
 		
 	}
 	
-	class User{
-		public function ChangePass($oldpass, $newpass, $cnewpass, $usrid, $con) {
-			
-			$oldpass = mysqli_real_escape_string($con, $oldpass);
-			$newpass = mysqli_real_escape_string($con, $newpass);
-			$cnewpass = mysqli_real_escape_string($con, $cnewpass);
-			
-			$result = mysqli_query($con, "SELECT '$userid' FROM users WHERE password = '" . md5($oldpass) . "'");
-
-				if ($result) {
-					if($newpass == $cnewpass && $oldpass != $newpass) {
-						mysqli_query($con, "UPDATE `users` SET `password`= ".md5($newpass)." WHERE 1;");
-						
-					} else {
-						$_SESSION['error'] = 'A megadott jelszók nem egyeznek';
-					}
-				} else $_SESSION['error'] = 'Hibás lekérdezés';
-			Shrek::Close($con);	
-		}
-		
-	}
+	
 
 
 
