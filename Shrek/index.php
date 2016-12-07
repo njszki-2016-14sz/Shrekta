@@ -25,14 +25,14 @@ include 'funct.php';
         <div class="collapse navbar-collapse" id="navbar1">
             <ul class="nav navbar-nav navbar-right">
                 <?php if (isset($_SESSION['usr_id'])) { ?>
-                <li><p class="navbar-text">Signed in as <?php echo $_SESSION['usr_name']; ?></p></li>
+                <li><p class="navbar-text"><a href="index.php?action=index">Signed in as <?php echo $_SESSION['usr_name']; ?></a></p></li>
 					<?php if(isset($_SESSION['IsAdmin'])) { ?>
 						<li><a href="index.php?action=admin">Admin</a></li>
 					<?php } ?>
                 <li><a href="index.php?action=logout">Shrek Out</a></li>
                 <?php } else { ?>
-                <li><a href="login.php">Shrek in</a></li>
-                <li><a href="register.php">Shrek Up</a></li>
+                <li><a href="index.php?action=login">Shrek in</a></li>
+                <li><a href="index.php?action=register">Shrek Up</a></li>
                 <?php } ?>
             </ul>
         </div>
@@ -62,7 +62,7 @@ include 'funct.php';
 					<input id="uppost" type="submit" name="UpPost" value="Post Up!" class="footer" class="button" class="btn btn-primary">
 
 
-
+		
 
 				</div>
 			</div>
@@ -82,11 +82,12 @@ include 'funct.php';
 				if(isset($_GET['action'])) {
 					switch ($_GET['action'])
 					{
-						case 'changepass': User::ChangePass($_SESSION['usr_id'], $_POST['OldPass'],$_POST['NewPass']); break;
+						
 						case 'deluser': Admin::DeleteUser($_POST['DelUserID']); break;
 						case 'makeadmin': Admin::SetAdmin($_POST['NewAdminID']); break;
 						case 'admin': Admin::SetAdmin($_POST['NewAdminID']); break;
 						case 'logout': Shrek::LogOut(); break;
+						
 						
 						
 					}
@@ -111,10 +112,65 @@ include 'funct.php';
 				
 			}
 			?>
-			
-			<!----------------------------------------------------------->
-			
-			<?php
+		
+		<!--- Changepass -->
+		<?php 
+		if(isset($_GET['action'])) {
+			switch ($_GET['action'])
+			{	
+						case 'changepass':
+						
+						?>
+				<div id="wrapper">
+
+						  <form name="login-form" class="login-form" action="" method="post">
+						  
+							<div class="header">
+							<h1>Shrekbook</h1>
+							<span>Only for green ones.</span>
+							<?php
+										if(isset($_SESSION["error"]))
+										{
+											$error=$_SESSION["error"];?>
+											<span id='hint'><?php print $error;?></span><br><?php
+											$_SESSION["error"]=null;
+										}
+							?>
+							</div>
+						  
+							<div class="content">
+								<input name="oldpass" type="password" class="input username" required class="form-control" placeholder="Old Password" />
+								
+								<input name="newpass" type="password" class="input password" class="form-control" placeholder="Password" required class="form-control" />
+
+								<input name="cnewpass" type="password" class="input password" class="form-control" placeholder="Confirm Password" required class="form-control" />
+								
+
+							</div>
+							
+							<div class="footer">
+							<input type="submit" name="changepassword" value="Shrek Up" class="button" class="btn btn-primary" />
+						  
+							</div>
+						  
+						  </form>
+
+						</div>
+							</div>
+						</div>
+		
+			<?php 
+				if(isset($_POST['changepassword'])) {
+					User::ChangePass($_POST['olddass'],$_POST['newpass'], $_POST['cnewpass'], $_SESSION['usr_id'], $con);
+				}
+				
+				; break;
+				
+			}
+		}?>
+		
+		<!--- POSTOK --------------------------------------------------------------->
+		<?php
 			
 				$error = false;
 					if(isset($_POST['UpPost'])){
@@ -133,8 +189,142 @@ include 'funct.php';
 					Post::ListPost($con);
 			}
 				?>
-		</div>
+		</div> 
 		
-		<!--------------------------------------------------------------------------------------------------------------------------------------->
+		
+		<!--- LOGIN - REGISTER !! ------------------------------------------------------------------------------------------------------------------------------------>
+		
+		<?php 
+		if(isset($_GET['action'])) {
+					switch ($_GET['action'])
+					{	
+						case 'login': /*login*/
+						
+						if(isset($_SESSION['usr_id'])!="") {
+							header("Location: index.php");
+						}
+							//$errormsg = "";
+						
+						if (isset($_POST['login'])) {	
+							Shrek::Login($_POST['email'], $_POST['password'], $con);
+						}
+
+
+		?>
+				
+					<div id="wrapper">
+
+					  <form name="login-form" class="login-form" action="" method="post">
+					  
+						<div class="header">
+						<h1>Shrekbook</h1>
+						<span>What are you doing in my swamp?</span>
+						<?php
+						if(isset($_SESSION["error"]))
+									{
+										$error=$_SESSION["error"];?>
+										<br><span id='hint'><?php print $error;?></span><br><?php
+										$_SESSION["error"]=null;
+									}
+						?>
+						</div>
+					  
+						<div class="content">
+						<input name="email" type="text" class="input username" required class="form-control" placeholder="Email" />
+						<div class="user-icon"></div>
+						<input name="password" type="password" class="input password" placeholder="Password" required class="form-control" />
+						<div class="pass-icon"></div>   
+						</div>
+						<div class="footer">
+						<input type="submit" name="login" value="Shrek In" class="button" class="btn btn-primary" />
+					  
+						</div>
+					  
+					  </form>
+
+					</div>
+					<div> <img id="pics"  src="shrek.png" > 
+					</div>
+
+							<script>
+							$( document ).ready(function() {
+							  $( "div" ).effect( "slide", "slow" );
+							});
+							</script>
+				<?php 
+						; break;
+				
+						case 'register': /*register*/
+						
+						if(isset($_SESSION['usr_id'])) {
+							header("Location: index.php");
+						}
+						$error = false;
+						if (isset($_POST['signup'])) {
+						   Shrek::Register($con, $_POST['name'], $_POST['email'], $_POST['password'], $_POST['cpassword'], $error);
+
+						}
+
+				?>
+						<div id="wrapper">
+
+						  <form name="login-form" class="login-form" action="" method="post">
+						  
+							<div class="header">
+							<h1>Shrekbook</h1>
+							<span>Only for green ones.</span>
+							<?php
+										if(isset($_SESSION["error"]))
+										{
+											$error=$_SESSION["error"];?>
+											<span id='hint'><?php print $error;?></span><br><?php
+											$_SESSION["error"]=null;
+										}
+							?>
+							</div>
+						  
+							<div class="content">
+								<input name="name" type="text" class="input username" required class="form-control" placeholder="Enter Full Name" />
+								
+						   
+								<input name="email" type="text" class="input password" class="form-control" placeholder="Email" required class="form-control"  />
+							   
+							
+								<input name="password" type="password" class="input password" class="form-control" placeholder="Password" required class="form-control" />
+
+
+								<input name="cpassword" type="password" class="input password" class="form-control" placeholder="Confirm Password" required class="form-control" />
+								
+
+							</div>
+							
+							<div class="footer">
+							<input type="submit" name="signup" value="Shrek Up" class="button" class="btn btn-primary" />
+						  
+							</div>
+						  
+						  </form>
+
+						</div>
+							</div>
+						</div>
+						<div> <img id="pics"  src="shrek.png" > 
+						 <img src="szamar.png" > </div>
+
+								<script>
+								$( document ).ready(function() {
+								  $( "div" ).effect( "slide", "slow" );
+								});
+								</script>
+
+						<?php
+						
+						
+						; break;
+					}
+		}
+	
+				?>
+		<!-- LOG/REG Vége -->	
 </body>
 </html>

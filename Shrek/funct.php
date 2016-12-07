@@ -28,8 +28,8 @@ include('Dbconnect.php');
 				}
 				if (!$error) {
 					if(mysqli_query($con, "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
-						header("Location: login.php");
-						$_SESSION['error'] = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
+						header("Location: index.php?action=login");
+						$_SESSION['error'] = "Successfully Registered! <a href='index.php?action=login'>Click here to Login</a>";
 					} else {
 						$_SESSION['error'] = "Error in registering...Please try again later!";
 					}
@@ -132,10 +132,32 @@ include('Dbconnect.php');
 		}
 		
 		public function SetAdmin($userid, $con) {
-			$res = mysqli_query($con, "UPDATE users SET admin='1' WHERE `id`='$userid';");
+			$res = mysqli_query($con, "UPDATE `users` SET `admin`='1' WHERE `id`='$userid';");
 			if($res) $_SESSION['adminmsg'] = "Sikeresen adminná tetted ".$userid." idjű felhasználót!";
 			else $_SESSION['adminmsg'] = "Hibás lekérdezés!";
 			
+		}
+		
+	}
+	
+	class User{
+		public function ChangePass($oldpass, $newpass, $cnewpass, $usrid, $con) {
+			
+			$oldpass = mysqli_real_escape_string($con, $oldpass);
+			$newpass = mysqli_real_escape_string($con, $newpass);
+			$cnewpass = mysqli_real_escape_string($con, $cnewpass);
+			
+			$result = mysqli_query($con, "SELECT '$userid' FROM users WHERE password = '" . md5($oldpass) . "'");
+
+				if ($result) {
+					if($newpass == $cnewpass && $oldpass != $newpass) {
+						mysqli_query($con, "UPDATE `users` SET `password`= ".md5($newpass)." WHERE 1;");
+						
+					} else {
+						$_SESSION['error'] = 'A megadott jelszók nem egyeznek';
+					}
+				} else $_SESSION['error'] = 'Hibás lekérdezés';
+				
 		}
 		
 	}
