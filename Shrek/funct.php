@@ -1,21 +1,24 @@
 <?php
- 
-
-	$con = mysqli_connect("localhost", "root", "", "shrekbook") or die("Error " . mysqli_error($con));
 	Class DB {
-		/*public function connect($con) {
-
-		public function query($con) {
-*/
-		public function Close($con) {
-			$close = mysqli_close($con);
-			if(!$close){
-				die('Close error: '.mysql_error());
+			public function connect($con) {
+				$con = mysqli_connect("localhost", "root", "", "shrekbook") or die("Error " . mysqli_error($con));
 			}
-		}
-		
-		//ezt még át kell írni az indexbe
+
+		    public function query($queryString) {
+				$resultId = mysql_query($queryString, $this->$con);
+				if(!$resultId){
+					die('Query error: '.mysql_error());
+				}
+			}
+
+			public function Close($con) {
+				$close = mysqli_close($con);
+				if(!$close){
+					die('Close error: '.mysql_error());
+				}
+			}		
 	}
+
 	Class User {
 		public function ChangePass($oldpass, $newpass, $cnewpass, $usrid, $con) {
 			
