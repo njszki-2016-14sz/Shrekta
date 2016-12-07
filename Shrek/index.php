@@ -73,15 +73,11 @@ include 'funct.php';
 				<?php 
 				if(isset($_GET['action'])) {
 					switch ($_GET['action'])
-					{
-						
+					{						
 						case 'deluser': Admin::DeleteUser($_POST['DelUserID']); break;
 						case 'makeadmin': Admin::SetAdmin($_POST['NewAdminID']); break;
 						case 'admin': Admin::SetAdmin($_POST['NewAdminID']); break;
 						case 'logout': Shrek::LogOut(); break;
-						
-						
-						
 					}
 				}
 					if(isset($_SESSION["adminmsg"]))
@@ -91,10 +87,8 @@ include 'funct.php';
 						$_SESSION["adminmsg"]=null;
 					} 
 				?>
-				
 				</div>
 			
-			<?php  ?>
 			
 			<!-- User menü -->
 			

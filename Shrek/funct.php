@@ -1,6 +1,6 @@
 <?php
 include('Dbconnect.php');
-	Class Shrek{
+	Class Shrek {
 		
 		
 		public function Register($con, $name, $email, $password, $cpassword, $error) {
@@ -35,7 +35,7 @@ include('Dbconnect.php');
 					}
 				}
 			}
-			//Shrek::Close($con);
+			Shrek::Close($con);
 		}
 		
 		public function Login($email, $password, $con){
@@ -53,7 +53,7 @@ include('Dbconnect.php');
 				} else {
 					$_SESSION['error'] = "Incorrect Email or Password!!!";
 				}
-				//Shrek::Close($con);
+				Shrek::Close($con);
 		}
 			
 			
@@ -67,6 +67,13 @@ include('Dbconnect.php');
 				$_SESSION['error'] = "Sikeresen kijelentkeztél.";
 			} else {
 				header("Location: index.php");
+			}
+		}
+		
+		public function Close($con) {
+			$close = mysqli_close($con);
+			if(!$close){
+				die('Close error: '.mysql_error());
 			}
 		}
 	}
@@ -86,7 +93,7 @@ include('Dbconnect.php');
 			} else {
 				$_SESSION['error'] = "Nem adtál meg üzenetet";
 			}
-			//Shrek::Close($con);
+			Shrek::Close($con);
 			
 		}
 		
@@ -109,15 +116,10 @@ include('Dbconnect.php');
 				}
 			} else  $_SESSION['error'] = "Hibás lekérdezés"; 
 			
-			//Shrek::Close($con);
+			Shrek::Close($con);
 		}
 		
-		public function Close($con) {
-			$close = mysqli_close($con);
-			if(!$close){
-				die('Close error: '.mysql_error());
-			}
-		}
+		
 		
 	}
 	
@@ -128,14 +130,14 @@ include('Dbconnect.php');
 			$res = mysqli_query($con, "DELETE * FROM `users` WHERE `id`='$userid';");
 			if($res) $_SESSION['adminmsg'] = "Sikeresen törölted ".$userid." idjű felhasználót!";
 			else $_SESSION['adminmsg'] = "Hibás lekérdezés!";
-			
+			Shrek::Close($con);
 		}
 		
 		public function SetAdmin($userid, $con) {
 			$res = mysqli_query($con, "UPDATE `users` SET `admin`='1' WHERE `id`='$userid';");
 			if($res) $_SESSION['adminmsg'] = "Sikeresen adminná tetted ".$userid." idjű felhasználót!";
 			else $_SESSION['adminmsg'] = "Hibás lekérdezés!";
-			
+			Shrek::Close($con);
 		}
 		
 	}
@@ -157,7 +159,7 @@ include('Dbconnect.php');
 						$_SESSION['error'] = 'A megadott jelszók nem egyeznek';
 					}
 				} else $_SESSION['error'] = 'Hibás lekérdezés';
-				
+			Shrek::Close($con);	
 		}
 		
 	}
