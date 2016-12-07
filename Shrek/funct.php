@@ -1,8 +1,9 @@
 <?php
+$con = mysqli_connect("localhost", "root", "", "shrekbook") or die("Error " . mysqli_error($con));
+			
 	Class DB {
-			public function connect($con) {
-				$con = mysqli_connect("localhost", "root", "", "shrekbook") or die("Error " . mysqli_error($con));
-			}
+			
+				
 
 		    public function query($queryString) {
 				$resultId = mysql_query($queryString, $this->$con);
