@@ -14,6 +14,11 @@ include_once("config.php");
 <form method="post" action="cart_update.php">
 <table width="100%"  cellpadding="6" cellspacing="0"><thead><tr><th>Quantity</th><th>Name</th><th>Price</th><th>Total</th><th>Remove</th></tr></thead>
   <tbody>
+  <audio controls autoplay="autoplay">
+  <source src="Allstar.mp3" type="audio/mpeg" preload="auto">
+    <source src="Allstar.ogg" type="audio/ogg" >
+  <p>Your browser does not support the audio element.</p>
+</audio> 
  	<?php
 	if(isset($_SESSION["cart_products"])) 
     {

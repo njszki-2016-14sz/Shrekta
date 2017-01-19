@@ -13,8 +13,12 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 <link href="style/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
-<h1 align="center">Shrek Shop </h1>
+  <audio controls autoplay="autoplay">
+  <source src="Allstar.mp3" type="audio/mpeg" preload="auto">
+    <source src="Allstar.ogg" type="audio/ogg" >
+  <p>Your browser does not support the audio element.</p>
+</audio> 
+<h1 align="center">Shrek Shop (Better than Ebay) </h1>
 
 
 <?php

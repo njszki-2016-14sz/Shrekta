@@ -24,13 +24,14 @@ if(isset($_POST["type"]) && $_POST["type"]=='add' && $_POST["product_qty"]>0)
         $new_product["product_name"] = $product_name; 
         $new_product["product_price"] = $price;
         
-        if(isset($_SESSION["cart_products"])){ 
+        if(isset($_SESSION["cart_products"])){  
             if(isset($_SESSION["cart_products"][$new_product['product_code']]))
             {
                 unset($_SESSION["cart_products"][$new_product['product_code']]); 
             }           
         }
         $_SESSION["cart_products"][$new_product['product_code']] = $new_product; 
+    } 
 }
 
 
