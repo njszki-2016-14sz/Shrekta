@@ -40,7 +40,7 @@ include_once("config.php");
         }
 		
 		$grand_total = $total + $shipping_cost; //grand total including shipping cost
-		foreach($taxes as $key => $value){ //list and calculate all taxes in array
+		foreach($taxes as $key => $value){ //list and calculate all taxes in arrayaaa
 				$tax_amount     = round($total * ($value / 100));
 				$tax_item[$key] = $tax_amount;
 				$grand_total    = $grand_total + $tax_amount;  //add tax val to grand total
