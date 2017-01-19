@@ -2,6 +2,10 @@ body{
 	margin: 0px;
 	padding: 0px;
 	font-family: Georgia, "Times New Roman", Times, serif;
+	background-image: url("s.png");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
 }
 h1, h2, h3{
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;	
@@ -50,7 +54,7 @@ ul.products li fieldset label select{
 }
 
 button, .button{
-	background-color: #39b3d7;
+	background-color: #00cc66;
 	min-width: 100px;
 	border: none;
 	padding: 10px;
