@@ -25,7 +25,7 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 {
 	echo '<div class="cart-view-table-front" id="view-cart">';
-	echo '<h3>Your Shopping Cart</h3>';
+	echo '<h3>Shopping Cart</h3>';
 	echo '<form method="post" action="cart_update.php">';
 	echo '<table width="100%"  cellpadding="6" cellspacing="0">';
 	echo '<tbody>';
@@ -48,7 +48,7 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 		$total = ($total + $subtotal);
 	}
 	echo '<td colspan="4">';
-	echo '<button type="submit">Update</button><a href="view_cart.php" class="button">Pay</a>';
+	echo '<button type="submit">Update</button><a href="view_cart.php" class="button">Go to Pay</a>';
 	echo '</td>';
 	echo '</tbody>';
 	echo '</table>';
@@ -79,7 +79,7 @@ $products_item .= <<<EOT
 	<div class="product-thumb"><img src="images/{$obj->product_img_name}"></div>
 	<div class="product-desc">{$obj->product_desc}</div>
 	<div class="product-info">
-	Price {$obj->price} .-HUF
+	Price: {$obj->price} .-HUF
 	
 	<fieldset>
 	
