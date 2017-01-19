@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once("config.php");
-include 'funct.php';
+include_once("../Control/config.php");
+include '../Control/funct.php';
 
 
 $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
@@ -11,13 +11,13 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Shopping Cart</title>
-<link href="style/style.css" rel="stylesheet" type="text/css">
-<link href="style/shrek.css" rel="stylesheet" type="text/css">
+<link href="../View/style/style.css" rel="stylesheet" type="text/css">
+<link href="../View/style/shrek.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <audio controls autoplay="autoplay">
-  <source src="Allstar.mp3" type="audio/mpeg" preload="auto">
-    <source src="Allstar.ogg" type="audio/ogg" >
+  <source src="../Model/Allstar.mp3" type="audio/mpeg" preload="auto">
+    <source src="../Model/Allstar.ogg" type="audio/ogg" >
   <p>Your browser does not support the audio element.</p>
 </audio>
 
@@ -102,14 +102,7 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 					  </form>
 
 					</div>
-					<div> <img id="pics"  src="shrek.png" > 
-					</div>
-
-							<script>
-							$( document ).ready(function() {
-							  $( "div" ).effect( "slide", "slow" );
-							});
-							</script>
+					
 				<?php 
 						; break;
 				
@@ -222,7 +215,7 @@ $products_item .= <<<EOT
 	<li class="product">
 	<form method="post" action="cart_update.php">
 	<div class="product-content"><h3>{$obj->product_name}</h3>
-	<div class="product-thumb"><img src="images/{$obj->product_img_name}"></div>
+	<div class="product-thumb"><img src="../View/images/{$obj->product_img_name}"></div>
 	<div class="product-desc">{$obj->product_desc}</div>
 	<div class="product-info">
 	Price: {$obj->price} .-HUF
