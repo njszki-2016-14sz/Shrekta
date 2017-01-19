@@ -185,8 +185,7 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 		$product_qty = $cart_itm["product_qty"];
 		$product_price = $cart_itm["product_price"];
 		$product_code = $cart_itm["product_code"];
-		$bg_color = ($b++%2==1) ? 'odd' : 'even'; 
-		echo '<tr class="'.$bg_color.'">';
+		
 		echo '<td>Qty <input type="text" size="2" maxlength="2" name="product_qty['.$product_code.']" value="'.$product_qty.'" /></td>';
 		echo '<td>'.$product_name.'</td>';
 		echo '<td><input type="checkbox" name="remove_code[]" value="'.$product_code.'" /> Remove</td>';

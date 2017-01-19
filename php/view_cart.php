@@ -33,8 +33,7 @@ include_once("config.php");
 			$product_code = $cart_itm["product_code"];
 			$subtotal = ($product_price * $product_qty); 
 			
-		   	$bg_color = ($b++%2==1) ? 'odd' : 'even'; 
-		    echo '<tr class="'.$bg_color.'">';
+		 
 			echo '<td><input type="text" size="2" maxlength="2" name="product_qty['.$product_code.']" value="'.$product_qty.'" /></td>';
 			echo '<td>'.$product_name.'</td>';
 			echo '<td>'.$product_price.'</td>';
@@ -46,7 +45,7 @@ include_once("config.php");
 		
 		$grand_total = $total;
 
-		//asd
+		
 	}
 	
     ?>
