@@ -19,7 +19,7 @@ if(isset($_POST["type"]) && $_POST["type"]=='add' && $_POST["product_qty"]>0)
     $statement->bind_result($product_name, $price);
 	
 	while($statement->fetch()){
-		
+		//fasz
 		
         $new_product["product_name"] = $product_name; 
         $new_product["product_price"] = $price;
