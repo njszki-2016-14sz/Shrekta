@@ -1,7 +1,7 @@
 <?php
 $db_username = 'root';
 $db_password = '';
-$db_name = 'products';
+$db_name = 'shrek';
 $db_host = 'localhost';
 	
 							
